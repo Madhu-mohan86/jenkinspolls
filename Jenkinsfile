@@ -3,7 +3,9 @@ pipeline{
     stages{
         stage("build docker"){
             steps{
+                script{
                 docker.build("react/test")
+                }
             }
         }
     }
