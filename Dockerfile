@@ -1,0 +1,9 @@
+FROM node:lts-iron
+
+WORKDIR /app
+
+COPY . .
+
+RUN npm install
+
+CMD [ "npm" , "start" ]
