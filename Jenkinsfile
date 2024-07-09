@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    environment {
+        DOCKER_IMAGE = 'madhu86/react'
+    }
     stages {
         stage("Build Docker Image") {
             steps {
