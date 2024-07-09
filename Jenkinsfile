@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('docker-hub-credentials-id') // Replace with your credentials ID
+        DOCKERHUB_CREDENTIALS = credentials('docker') // Replace with your credentials ID
         DOCKER_IMAGE = 'madhu86/react'
     }
     stages {
