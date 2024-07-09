@@ -1,19 +1,25 @@
-pipeline{
+pipeline {
     agent any
-
-    environment{
-        DOCKERHUB_CREDENTIALS = credentials('docker')
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials('docker-hub-credentials-id') // Replace with your credentials ID
+        DOCKER_IMAGE = 'madhu86/react'
     }
-    stages{
-        stage("build docker"){
-            steps{
-                def app=docker.build("madhu86/react")
+    stages {
+        stage("Build Docker Image") {
+            steps {
+                script {
+                    // Build Docker image
+                    def dockerImage = docker.build DOCKER_IMAGE
+                }
             }
         }
-        stage("push the image"){
-            steps{
-                docker.withRegistry("https://hub.docker.com/r/madhu86/react",DOCKERHUB_CREDENTIALS){
-                    app.push()
+        stage("Push Docker Image") {
+            steps {
+                script {
+                    // Push Docker image to Docker Hub
+                    docker.withRegistry('https://registry.hub.docker.com', DOCKERHUB_CREDENTIALS) {
+                        dockerImage.push()
+                    }
                 }
             }
         }
