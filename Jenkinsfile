@@ -1,9 +1,5 @@
 pipeline {
     agent any
-    environment {
-        DOCKERHUB_CREDENTIALS = credentials('docker') // Replace with your credentials ID
-        DOCKER_IMAGE = 'madhu86/react'
-    }
     stages {
         stage("Build Docker Image") {
             steps {
@@ -17,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Push Docker image to Docker Hub
-                    docker.withRegistry('https://registry.hub.docker.com', DOCKERHUB_CREDENTIALS) {
+                    docker.withRegistry('https://registry.hub.docker.com', "docker") {
                         dockerImage.push()
                     }
                 }
