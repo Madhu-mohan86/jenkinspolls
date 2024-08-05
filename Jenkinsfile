@@ -1,11 +1,7 @@
-def isDockerConfigured() {
-    return Jenkins.instance.pluginManager.plugins.any { it.shortName == 'docker-plugin' && it.active }
-}
-
 pipeline {
     agent {
-        // Use a Docker agent if Docker is configured, otherwise use any available agent
-        label isDockerConfigured() ? 'docker' : ''
+        // Define a specific agent label directly, or use 'any' if Docker is not configured
+        label 'any'
     }
 
     parameters {
@@ -16,16 +12,12 @@ pipeline {
         DOCKER_IMAGE = "${params.DOCKER_IMAGE_INPUT}"
     }
 
-    // triggers {
-    //     pollSCM('0 0 */2 * * *') // Poll SCM every 2 hours
-    // }
-
     stages {
         stage("Build Docker Image") {
             steps {
                 script {
                     // Build Docker image
-                    dockerImage = docker.build DOCKER_IMAGE
+                    dockerImage = docker.build(DOCKER_IMAGE)
                 }
             }
         }
