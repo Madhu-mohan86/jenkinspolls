@@ -13,12 +13,12 @@ pipeline {
     }
 
     environment {
-        DOCKER_IMAGE = params.DOCKER_IMAGE_INPUT
+        DOCKER_IMAGE = "${params.DOCKER_IMAGE_INPUT}"
     }
 
-    triggers {
-        pollSCM('0 0 */2 * * *') // Poll SCM every 2 hours
-    }
+    // triggers {
+    //     pollSCM('0 0 */2 * * *') // Poll SCM every 2 hours
+    // }
 
     stages {
         stage("Build Docker Image") {
