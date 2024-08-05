@@ -1,8 +1,6 @@
 pipeline {
-    agent {
-        // Define a specific agent label directly, or use 'any' if Docker is not configured
-        label 'any'
-    }
+
+    agent any;
 
     parameters {
         string(name: "DOCKER_IMAGE_INPUT", defaultValue: "madhu86/react", description: "Default Docker image")
