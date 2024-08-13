@@ -11,7 +11,6 @@ function App() {
         </p>
         <h1>this is simple message for testing</h1>
         <h1>if this is changed then the keel is working</h1>
-        <h1>checking after expansion of disk</h1>
       </header>
     </div>
   );
